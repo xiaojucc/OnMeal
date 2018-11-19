@@ -1,14 +1,12 @@
 <?php
-require_once 'conn.php';
-
-$username=$_GET['username'];
-$restaurant=$_GET['restaurant'];
-$sql="select * from food where restaurant = '$restaurant' ";
+require_once '_conn.php';
+session_start();
+$username=$_SESSION['username'];
+$sql="select * from food where restaurant = '$username' ";
 $result=mysql_query($sql,$conn);
 $row=mysql_fetch_array($result);
-$name=$row['name'];
+$name=$_GET['name'];
 $price=$row['price'];
-$recommend=$row['recommend'];
 mysql_close($conn);
 ?>
 
@@ -20,7 +18,7 @@ mysql_close($conn);
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
-body{background:#555555;font-family: "微软雅黑", sans-serif;}
+body{background:#555555;font-family: sans-serif;}
  
 .login { 
     position: absolute;
@@ -58,15 +56,11 @@ body{background:#555555;font-family: "微软雅黑", sans-serif;}
 </head>
     <body>
     <div class="login">
-	<form action="update_food.php" method="post">
-	<input type="text" id="input1" name="hname" style="display:none;" value="<?php echo $name?>">
-	<input type="text" id="input1" name="huser" style="display:none;" value="<?php echo $username?>">
-	<div><p>菜品名称：<input type="text" id="input1" name="name"  value="<?php echo $name?>"></p></div>
-	<div><p>价格：<input type="text" id="input1" name="price"  value="<?php echo $price?>"></p></div>
-	<p>是否推荐：</p><h3><input type="radio" id="input1" name="recommend"  value="是" checked="checked">是</h3>
-	             <h3> <input type="radio" id="input1" name="recommend"  value="不是">不是</h3>
-	
-	<input type="submit" id="input2" value="提交">
+	<form action="_modify_food.php" method="post">
+	<input type="text" id="input1" name="fname" style="display:none;" value="<?php echo $name?>">
+	<div><p>Name:<input type="text" id="input1" name="name"  value="<?php echo $name?>"></p></div>
+	<div><p>Price:$<input type="text" id="input1" name="price"  value="<?php echo $price?>"></p></div>
+	<input type="submit" id="input2" value="SUBMIT">
 	
 	</form>
 	</div>

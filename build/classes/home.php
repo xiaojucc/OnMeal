@@ -1,12 +1,5 @@
 <?php
-require_once '_conn.php';
-session_start();
-$username=$_SESSION['username'];
-?>
-
-<?php mysql_close($conn);
-?>
-
+header("content-type:text/html;charset=gb2312");?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN">
 <html>
 <head>
@@ -15,7 +8,9 @@ $username=$_SESSION['username'];
 <style>
 body {background:#555555;}
 #banner {width:200px;height:50px;border-radius: 27px;background:#CC3333;line-height:50px;margin:20px 50px;}
-#div1{width:400px;height:400px;background:#EEE;margin:auto;padding:20px 0px;border-radius: 20px;text-align:center;}
+#div1{position: absolute;
+    top: 50%;
+    left: 50%;width:400px;height:330px;background:#EEE;margin:-190px 0px 0px -170px;padding:20px 0px;border-radius: 20px;text-align:center;}
 #div1 h2{color:black;font-size:2em;}
 p {color:white;font-size:18px;}
 button {
@@ -37,11 +32,9 @@ a:visited { text-decoration: none;color: black;}
 </head>
     <body>
     <div id="div1">
-    <h2>welcome <?php echo $username?></h2>
-      <button onclick="window.location.href='merchant_info.php" ><p>edit info</p></button>
-      <button onclick="window.location.href='menu.php'"><p>review menu</p></button>
-      <button onclick="window.location.href='order.php'"><p>review order</p></button>
-      <button onclick="window.location.href='home.php'"><p>log out</p></button>
+    <h2>Welcome to OnMeal!</h2>
+      <button onclick="window.location.href='customer_login.php'" ><p>CUSTOMER</p></button>
+      <button onclick="window.location.href='rest_login.php'"><p>RESTAURANT</p></button>
     </div>
     </body>
 </html>
